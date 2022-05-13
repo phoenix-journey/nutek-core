@@ -71,28 +71,10 @@ RUN apt install -y gobuster
 
 RUN apt install -y ncrack
 
-RUN go install -v github.com/projectdiscovery/subfinder/v2/cmd/subfinder@latest
-RUN apt install -y sublist3r
-RUN go get -u github.com/tomnomnom/waybackurls
-RUN go get -u github.com/tomnomnom/gf
-RUN go install -v github.com/projectdiscovery/dnsx/cmd/dnsx@latest
-RUN go get -u github.com/tomnomnom/assetfinder
-RUN go install -v github.com/projectdiscovery/httpx/cmd/httpx@latest
-RUN go get github.com/Emoe/kxss
-RUN go install github.com/hahwul/dalfox/v2@latest
-RUN go install -v github.com/tomnomnom/anew@latest
-RUN go install -v github.com/projectdiscovery/notify/cmd/notify@latest
-RUN go install -v github.com/OWASP/Amass/v3/...@master
-RUN go install github.com/lc/gau/v2/cmd/gau@latest
-RUN curl -sSfL https://git.io/crlfuzz | sh -s -- -b /usr/local/bin
-RUN pip install uro
-RUN go install github.com/ffuf/ffuf@latest
-RUN apt install -y libpcap-dev
-RUN go install -v github.com/projectdiscovery/naabu/v2/cmd/naabu@latest
-RUN go get github.com/cgboal/sonarsearch/cmd/crobat
-RUN go get -u github.com/jaeles-project/gospider
-RUN go install github.com/tomnomnom/waybackurls@latest
-RUN git clone https://github.com/R0X4R/Garud.git && cd Garud/ && chmod +x garud install.sh && mv garud /usr/bin/ && ./install.sh
+RUN git clone https://github.com/phoenix-journey/Garud.git 
+RUN chmod +x Garud/garud Garud/install.sh 
+RUN mv Garud/garud /usr/bin/
+RUN ./Garud/install.sh
 
 RUN git clone https://github.com/phoenix-journey/PayloadsAllTheThings.git
 RUN git clone https://github.com/phoenix-journey/SecLists.git
@@ -107,3 +89,11 @@ RUN apt install -y theharvester
 RUN apt install -y amass
 RUN apt install -y nikto
 RUN git clone https://github.com/phoenix-journey/rapidscan.git
+
+RUN pip install recent2
+RUN echo "export PROMPT_COMMAND='log-recent -r \$? -c \"\$(HISTTIMEFORMAT= history 1)\" -p \$\$'" >> ~/.bashrc
+RUN echo "source ~/.bashrc" >> /etc/profile
+RUN mkdir -p ~/.nutek/bash_logs
+RUN echo "export RECENT_DB='$HOME/.nutek/bash_logs/recent.db'" >> ~/.bashrc
+
+RUN git clone https://github.com/phoenix-journey/Payloads.git
