@@ -1,0 +1,12 @@
+version: 2.1
+jobs:
+  build_image:
+    machine:
+      image: ubuntu-2004:202201-02
+    steps:
+      - checkout
+      - run: docker build --tag neosb/nutek-core:latest .
+workflows:
+  production:
+    jobs:
+      - build_image

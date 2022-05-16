@@ -2,10 +2,20 @@
 My preciousssss.... 😼
 
 This is the base, for all my cyber security tasks. If it can be done in
-command line - I want in. Tested throughout the course of [TryHackMe](https://tryhackme.com/).
+command line - I want in. Tested throughout the course of [TryHackMe](https://tryhackme.com/) _currently on the level of complete newbie - lamer_.
 
 Obvious mischiefs? GUI programs. Burp, Beef, Firefox, Zenmap... And many others... But hey, you can `echo "Hej Nutek!"` - GUI say no
 to Docker, I say no to GUI. Anyway, have fun.
+
+Where we will be going from here? I have plans to automate the process of gathering information and creating reports. To make it easy getting us to payday! There are websites that offer bug bounties for documenting security flaws in software, hardware, websites and servers.
+
+I share my list:
+  - [Bugcrowd](https://www.bugcrowd.com)
+  - [Safehats](https://safehats.com)
+  - [Cobalt](https://www.cobalt.io)
+  - [SynAck](https://www.synack.com)
+  - [Google Bug Hunters](https://bughunters.google.com/)
+  - *[HackerOne](https://www.hackerone.com/hackers)*
 
 ## How to use?
 
@@ -26,3 +36,12 @@ Both of this commands will delete the container upon `exit` and place you in def
 4. If you know what you're doing... What are you doing here? Just run the container however you like, and enjoy.
 
 If you would like to look inside the nutek-core engine, follow [this rabbit](https://github.com/phoenix-journey/nutek-core)
+
+## Where to go from here?
+
+The best place to start? It's [here](https://github.com/phoenix-journey/vulhub) - take a look, spin up some containers, and _hacz_.
+
+#### !WARNING!!
+
+All you do leave a **track**, so you have to know that the first name
+for this Linux flavour was BackTrack. There is also another [ParrotOS](https://www.parrotsec.org) and the one you're currently looking at is named [Kali Linux](https://www.kali.org), just so you know.

@@ -81,7 +81,11 @@ RUN chmod +x Garud/garud Garud/install.sh
 RUN mv Garud/garud /usr/bin/
 RUN ./Garud/install.sh
 
+# RUN apt update && apt install -y payloadsallthethings
+# lsd -lah /usr/share/payloadsallthethings
 RUN git clone https://github.com/phoenix-journey/PayloadsAllTheThings.git
+# RUN apt update && apt apt install -y seclists
+# lsd -lah /usr/share/seclists
 RUN git clone https://github.com/phoenix-journey/SecLists.git
 
 # rapidscan dependencies
