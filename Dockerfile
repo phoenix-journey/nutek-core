@@ -100,13 +100,6 @@ RUN apt update && apt install -y amass
 RUN apt update && apt install -y nikto
 RUN git clone https://github.com/phoenix-journey/rapidscan.git
 
-# save bash history to database
-RUN pip install recent2
-RUN echo "export PROMPT_COMMAND='log-recent -r \$? -c \"\$(HISTTIMEFORMAT= history 1)\" -p \$\$'" >> ~/.bashrc
-RUN echo "source ~/.bashrc" >> /etc/profile
-RUN mkdir -p ~/.nutek/bash_logs
-RUN echo "export RECENT_DB='$HOME/.nutek/bash_logs/recent.db'" >> ~/.bashrc
-
 RUN git clone https://github.com/phoenix-journey/Payloads.git
 
 # To make rapidscan better
@@ -124,3 +117,25 @@ RUN apt update && apt install -y dmitry
 
 # lsd, new way of ls
 RUN cargo install lsd
+
+RUN apt install -y ncat
+
+# save bash history to database
+RUN pip install recent2
+RUN echo "export PROMPT_COMMAND='log-recent -r \$? -c \"\$(HISTTIMEFORMAT= history 1)\" -p \$\$'" >> ~/.bashrc
+RUN echo "source ~/.bashrc" >> /etc/profile
+RUN mkdir -p ~/.nutek
+RUN echo "export RECENT_DB='$HOME/.nutek/recent-bash_logs.db'" >> ~/.bashrc
+
+# greetings
+RUN echo 'echo $"::::    ::: :::    ::: ::::::::::: :::::::::: :::    ::: \n\
+:+:+:   :+: :+:    :+:     :+:     :+:        :+:   :+:  \n\
+:+:+:+  +:+ +:+    +:+     +:+     +:+        +:+  +:+   \n\
++#+ +:+ +#+ +#+    +:+     +#+     +#++:++#   +#++:++    \n\
++#+  +#+#+# +#+    +#+     +#+     +#+        +#+  +#+   "' >> ~/.bashrc
+RUN echo "echo '#+#   #+#+# #+#    #+#     #+#     #+#        #+#   #+#  '" >> ~/.bashrc
+RUN echo "echo '###    ####  ########      ###     ########## ###    ### 😼 '" >> ~/.bashrc
+RUN echo "echo 'Neosb @museyoucoulduse\n'" >> ~/.bashrc
+
+# remove unnecesairly line in bash config file
+RUN sed -i '/gf-completion.bash/d' .bashrc
