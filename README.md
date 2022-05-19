@@ -19,6 +19,8 @@ I share my list:
 
 ## How to use?
 
+- There are two versions of this image, __regular__ and _slim_, look into [tags](https://hub.docker.com/r/neosb/nutek-core/tags) to search for more
+
 1. Make a directory `mkdir $HOME/.nutek` - that's where I plan to 
 store the data. The first thing that will land there is a bash
 history in SQLite3 database `.nutek/recent-bash_logs.db` - so you
@@ -65,9 +67,10 @@ so you [fill an issue](https://github.com/phoenix-journey/nutek-core/issues) on 
 
 ## Where to go from here?
 
-The best place to start? It's [here](https://github.com/phoenix-journey/vulhub) - take a look, spin up some containers, and _hacz_.
+The best place to start? It's [here](https://github.com/phoenix-journey/vulhub) - take a look, spin up some containers, and _hacz_. But we're not there yet are we? If so, please skip this part up
+until the [warning](#!warning!!)
 
-You can also try the new package in here, [mitmproxy](https://mitmproxy.org). In short, running mitmproxy from one terminal window run with `docker run -it --name nutek-core neosb/nutek-core:latest mitmproxy` command, and then connecting to the same docker container
+You can also try the new package in here, [mitmproxy](https://mitmproxy.org). In short, running mitmproxy from one terminal window run with `docker run -it --rm --name nutek-core neosb/nutek-core:latest mitmproxy` command, and then connecting to the same docker container
 from another terminal window/tab with `docker exec -it nutek-core bash`. From now on you might use your first mitmproxy tab to look into http requests and responses you get, post, put, delete and so on.
 
 If you followed my through previous paragraph, try this command:

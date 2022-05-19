@@ -6,7 +6,14 @@ jobs:
     steps:
       - checkout
       - run: docker build --tag neosb/nutek-core:latest .
+  build_slim_image:
+    machine:
+      image: ubuntu-2004:202201-02
+    steps:
+      - checkout
+      - run: cd slim && docker build --tag neosb/nutek-core:slim .
 workflows:
   production:
     jobs:
+      - build_slim_image
       - build_image

@@ -32,7 +32,7 @@ RUN apt update && apt install -y git
 # file used in website filename and directory discovery
 RUN git clone https://github.com/phoenix-journey/fuzz.txt.git
 
-# programming language
+# Python programming language
 RUN apt update && apt install -y python3.10 python3-distutils
 RUN curl https://bootstrap.pypa.io/get-pip.py | python3.10
 
@@ -67,7 +67,7 @@ RUN apt update && apt install -y metasploit-framework
 
 RUN apt update && apt install -y sqlmap
 
-RUN apt update && apt install -y vim
+RUN apt update && apt install -y neovim
 
 RUN apt update && apt install -y finalrecon
 
@@ -135,7 +135,7 @@ RUN echo 'echo $"::::    ::: :::    ::: ::::::::::: :::::::::: :::    ::: \n\
 +#+  +#+#+# +#+    +#+     +#+     +#+        +#+  +#+   "' >> ~/.bashrc
 RUN echo "echo '#+#   #+#+# #+#    #+#     #+#     #+#        #+#   #+#  '" >> ~/.bashrc
 RUN echo "echo '###    ####  ########      ###     ########## ###    ### 😼 '" >> ~/.bashrc
-RUN echo "echo 'Neosb @museyoucoulduse\n'" >> ~/.bashrc
+RUN echo "echo 'https://neosb.marketplaceinspace.com\n'" >> ~/.bashrc
 
 # remove unnecesairly line in bash config file
 RUN sed -i '/gf-completion.bash/d' .bashrc
@@ -154,3 +154,10 @@ RUN apt update && apt install -y hurl
 # manual - http://w3m.sourceforge.net/MANUAL
 # it has a proxy setting, so that you can use it with mitmproxy
 RUN apt update && apt install -y w3m
+# make w3m storage directory
+RUN mkdir ~/.w3m
+# Unicode in w3m web browser
+RUN echo 'display_charset UTF-8' >> ~/.w3m/config 
+
+# cleanup after install
+RUN rm go1.18.1.linux-amd64.tar.gz
