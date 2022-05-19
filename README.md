@@ -37,7 +37,7 @@ _when you exit_ __everything__ is **deleted** beside thing you put in `.nutek` d
 
 #TODO - automated scripts that gather logs from included programs that copy reports to .nutek folder
 
-- if you wish to preserve your container instance, thus **not** deleting any information stored in it. because why would anybody else look there? drop the `--rm` switch shortening the run command to `docker run -it neosb/nutek:latest`
+- if you wish to preserve your container instance, thus **not** deleting any information stored in it. because why would anybody else look there? drop the `--rm` switch shortening the run command to `docker run -it neosb/nutek-core:latest`
 
 4. If you know what you're doing... What are you doing here? Just run the container however you like, and enjoy.
 
@@ -66,6 +66,22 @@ so you [fill an issue](https://github.com/phoenix-journey/nutek-core/issues) on 
 ## Where to go from here?
 
 The best place to start? It's [here](https://github.com/phoenix-journey/vulhub) - take a look, spin up some containers, and _hacz_.
+
+You can also try the new package in here, [mitmproxy](https://mitmproxy.org). In short, running mitmproxy from one terminal window run with `docker run -it --name nutek-core neosb/nutek-core:latest mitmproxy` command, and then connecting to the same docker container
+from another terminal window/tab with `docker exec -it nutek-core bash`. From now on you might use your first mitmproxy tab to look into http requests and responses you get, post, put, delete and so on.
+
+If you followed my through previous paragraph, try this command:
+
+```shell
+curl --proxy http://127.0.0.1:8080 "http://wttr.in/Rome?0"
+```
+
+Change the terminal window to your mitmproxy program, and there you can
+see your http request intercepted by (_man_) in the middle attack.
+Try looking into the mitmproxy [manual](https://docs.mitmproxy.org/stable/) to see how you can change
+your request to show another location.
+
+I have also included terminal based web browser [w3m](http://w3m.sourceforge.net/). From it you can bypass _robot_ secured Google frontpage and actually make a search from command line. Try out: `w3m google.com`. If you're into it, change proxy settings in _w3m_ and intercept the Google page request. It might be fun.
 
 #### !WARNING!!
 
