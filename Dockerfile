@@ -139,3 +139,18 @@ RUN echo "echo 'Neosb @museyoucoulduse\n'" >> ~/.bashrc
 
 # remove unnecesairly line in bash config file
 RUN sed -i '/gf-completion.bash/d' .bashrc
+
+# web proxy somehow similar to Burp Suite but in terminal
+# there is also mitmweb in this package
+RUN apt update && apt install -y mitmproxy
+RUN curl http://mitm.it/cert/pem > mitmproxy.crt
+RUN mv mitmproxy.crt /usr/local/share/ca-certificates/mitmproxy.crt
+RUN update-ca-certificates
+
+# various encoding and decoding strings tool
+RUN apt update && apt install -y hurl
+
+# Terminal based web browser
+# manual - http://w3m.sourceforge.net/MANUAL
+# it has a proxy setting, so that you can use it with mitmproxy
+RUN apt update && apt install -y w3m
