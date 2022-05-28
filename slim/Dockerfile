@@ -1,4 +1,4 @@
-FROM neosb/nutek-core:basic
+FROM neosb/nutek-core:base
 
 WORKDIR /root
 
