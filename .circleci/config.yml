@@ -1,11 +1,17 @@
 version: 2.1
 jobs:
-  build_image:
+  build_base_image:
     machine:
       image: ubuntu-2004:202201-02
     steps:
       - checkout
-      - run: docker build --tag neosb/nutek-core:latest .
+      - run: docker build --tag neosb/nutek-core:base .
+  build_large_image:
+    machine:
+      image: ubuntu-2004:202201-02
+    steps:
+      - checkout
+      - run: cd large && docker build --tag neosb/nutek-core:large .
   build_slim_image:
     machine:
       image: ubuntu-2004:202201-02
@@ -15,5 +21,6 @@ jobs:
 workflows:
   production:
     jobs:
+      - build_base_image
       - build_slim_image
-      - build_image
+      - build_large_image

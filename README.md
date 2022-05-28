@@ -1,5 +1,15 @@
 # nutek-core
-My preciousssss.... 😼
+
+```
+::::    ::: :::    ::: ::::::::::: :::::::::: :::    ::: 
+:+:+:   :+: :+:    :+:     :+:     :+:        :+:   :+:  
+:+:+:+  +:+ +:+    +:+     +:+     +:+        +:+  +:+   
++#+ +:+ +#+ +#+    +:+     +#+     +#++:++#   +#++:++    
++#+  +#+#+# +#+    +#+     +#+     +#+        +#+  +#+   
+#+#   #+#+# #+#    #+#     #+#     #+#        #+#   #+#  
+###    ####  ########      ###     ########## ###    ### 😼 
+Neosb @museyoucoulduse
+```
 
 This is the base, for all my cyber security tasks. If it can be done in
 command line - I want in. Tested throughout the course of [TryHackMe](https://tryhackme.com/) _currently on the level of complete newbie - lamer_.
@@ -8,6 +18,8 @@ Obvious mischiefs? GUI programs. Burp, Beef, Firefox, Zenmap... And many others.
 to Docker, I say no to GUI. Anyway, have fun.
 
 Where we will be going from here? I have plans to automate the process of gathering information and creating reports. To make it easy getting us to payday! There are websites that offer bug bounties for documenting security flaws in software, hardware, websites and servers.
+
+[WIKI - Bug Bounty Program](https://en.wikipedia.org/wiki/Bug_bounty_program)
 
 I share my list:
   - [Bugcrowd](https://www.bugcrowd.com)
@@ -19,7 +31,163 @@ I share my list:
 
 ## How to use?
 
-- There are two versions of this image, __regular__ and _slim_, look into [tags](https://hub.docker.com/r/neosb/nutek-core/tags) to search for more
+[skip to manual](#manual)
+
+First of all it's **WORK IN PROGRESS** - definietly not set in stone.
+
+- attach `.nutek` folder for **future** storage and `recent2` command line history or read further for container specific configuration.
+
+- I will maintain two versions of this image, __large__, currently called latest or with just a version and _slim_, *slim_latest* or *slim_version*,  that should be a good to have IT security frameworks. Look into [tags](https://hub.docker.com/r/neosb/nutek-core/tags) to inspect more of the possible features.
+
+  - The common ground for all of the containers is the **base** image, which provides `recent2` for logging bash commands and minimal `Kali Linux` image from _rolling_ branch with `python3`.
+
+## Available nutek-core container image tags
+
+### :base
+
+From where the _Sauron's eye_ see.
+
+You __should__ but are not obligated to have a `.nutek` directory in 
+your `$HOME` folder, where all the goodies are stored.
+
+What will land in `.nutek`?
+  - logs
+    1. `sqlite3` database of `recent2` bash commands
+  - reports
+  - found vulnerabilities
+  - scan results
+  - _if it fits, then it sits_
+  - security certificates
+  - API keys
+  - `Python` scripts, and `Rust` binaries
+
+Why? Even if you're a convicted criminal, at least you know why you're
+in your current position.
+
+How? Simple. use `docker` command with 
+
+```shell
+-v $HOME/.nutek:/root/.nutek
+```
+
+switch. It's that simplet to have a storage in your container. You can
+safely exchange files between your current containers using this
+folder. If you have your system encrypted, then it's the unencrypted
+session of your current login shell, X Window system, or Windows
+OS state, so if you get to be lost on a journey and get cracked from
+outside, you have to terminate your container to turn off the
+connection. You could for example use `--rm` switch to instantly on
+exiting the container, remove the container from cache, but it
+already should be disconnected as far as _I_ know.
+
+To view your command history open-up your `sqlite3` program and run inside it:
+
+```
+select * from commands;
+```
+
+And there you have it. - This will even log your parallel nutek-core sessions, so the output might be scattered in between many paths you took while playing the **red**/**blue** team _game_.
+
+Take a look around sqlite3 and get help with `.help`, and exit with command `.quit`.
+
+Execute `docker run -h friendly-host-name neosb/nutek-core:base` for your friendly hostname.
+
+### :slim
+
+Successively growing tool for IT Security enthusiasts, professionals looking for open source toolchain and webmasters, system administrators and every other curious computer owner. This container does not need root privilages, so if you can run a container with shell access - `docker run --rm ubuntu:latest echo "Hi Nutek"`, this might be for you. I'm trying to encapsulate most important tools needed, and the best tool available that are open source and/or free of charge.
+
+At the moment this tag consist of:
+
+1. nmap - port scanner
+2. curl - see url
+3. wget - GNU downloader
+4. payloadsallthethings - maybe this will do
+5. python3 - programming language
+6. mitmproxy - transparent proxy
+7. hurl - encoder/decoder
+8. w3m - terminal web browser
+9. neovim - Vim reimagined, text editor
+10. ncat - tcp connection tool
+
+#### mitmproxy
+
+This container provides [mitmproxy](https://mitmproxy.org/), the transparent proxy in the like of `Burp Suite` but open source .
+
+You can intercept, change, manipulate, script it via Python and sniff all the typical web browser stuff. Modify queries on the fly, intercept response and change it to your liking or upload a text file instead of your profile picture... Will it work on `Facebook`?
+
+#### mitmproxy configuration
+
+According to [manual](https://docs.mitmproxy.org/stable/concepts-certificates/)...
+
+Or my way:
+
+ 1. Open `mitmproxy` from container with port `8080` exposed and setup your browser proxy...
+
+ 2. Configure web browser proxy (`w3m` and `Firefox`) or system-wide proxy for http and https connections to `http://0.0.0.0:8080`
+
+ 3. Check if http proxy is working by heading to [http://mitm.it/](http://mitm.it/) website get this certificate and then install the certificate with the way that's described on the page. Certificate will be valid until you destroy your container, either with `--rm` or manually. Then you will need to 
+ repeat the steps. Maybe save your container with a `--name mitmproxy` and restert it with `docker start -i mitmproxy` what will preserve your initial `docker run` configuration.
+
+#### mitmweb
+
+Not yet finished "GUI" version of mitmproxy in web browser. Run with caution. Not all features coverd.
+You have to expose port `8081` to public to be able to connect to the frontend.
+
+#### mitmweb configuration
+
+Steps are similar to mitmproxy [configuration](#mitmproxy-configuration).
+
+#### mitmdump
+
+tcpdump for web
+
+### :large
+
+This container is mainly prepared for my testing purposes. It is 13 GB large, and that's the reaseon why it's disregarded to use, but if you please, have a test run and give me an input through GitHub issues if you think that something is missing or is in plenty, that is too much. Primarily thought as a recon stage, but grown into unmaintainable size for one person, thus it's have been succesively striped down into smaller pieces.
+
+Complete list of main tools (without dependencies):
+
+1. [nmap](https://nmap.org/) 
+2. [curl](https://curl.se/)
+3. [wget](https://www.gnu.org/software/wget/)
+3. [rust](https://www.rust-lang.org/)
+4. [build-essential](https://packages.debian.org/sid/build-essential)
+5. [xsltproc](https://gitlab.gnome.org/GNOME/libxslt/-/wikis/home)
+6. [rustscan](https://rustscan.github.io/RustScan/)
+7. [nvd_cve](https://crates.io/crates/nvd_cve)
+8. [feroxbuster](https://epi052.github.io/feroxbuster-docs/)
+9. [git](https://git-scm.com/)
+10. [fuzz.txt](https://github.com/Bo0oM/fuzz.txt)
+11. [python3](https://www.python.org/)
+12. [raccoon](https://github.com/evyatarmeged/Raccoon)
+14. [go](https://go.dev/)
+15. [smap](https://github.com/s0md3v/smap)
+16. [vulscan](https://www.computec.ch/projekte/vulscan/)
+17. [ping](https://packages.debian.org/sid/iputils-ping)
+18. [john](https://www.openwall.com/john/)
+19. [hydra](https://github.com/vanhauser-thc/thc-hydra)
+20. [hashid](https://github.com/psypanda/hashID)
+21. [nuclei](https://nuclei.projectdiscovery.io/)
+22. [commix](https://commixproject.com/)
+23. [metasploit-framework](https://www.metasploit.com/)
+24. [sqlmap](https://sqlmap.org/)
+25. [neovim](http://neovim.io/)
+26. [finalrecon](https://github.com/thewhiteh4t/FinalRecon)
+27. [gobuster](https://github.com/OJ/gobuster)
+28. [ncrack](https://nmap.org/ncrack/)
+29. [garud](https://github.com/R0X4R/Garud)
+30. [payloadsallthethings](https://github.com/swisskyrepo/PayloadsAllTheThings)
+31. [seclist](https://owasp.org/www-project-internet-of-things/)
+32. [rapidscan](https://github.com/skavngr/rapidscan)
+33. [payloads](https://github.com/sh377c0d3/Payloads)
+34. [lsd](https://github.com/Peltoche/lsd)
+35. [ncat](https://nmap.org/ncat/)
+36. [mitmproxy](https://mitmproxy.org/)
+37. [hurl](https://github.com/fnord0/hURL)
+38. [w3m](http://w3m.sourceforge.net/)
+39. []()
+
+## Manual
 
 1. Make a directory `mkdir $HOME/.nutek` - that's where I plan to 
 store the data. The first thing that will land there is a bash
@@ -68,7 +236,8 @@ so you [fill an issue](https://github.com/phoenix-journey/nutek-core/issues) on 
 ## Where to go from here?
 
 The best place to start? It's [here](https://github.com/phoenix-journey/vulhub) - take a look, spin up some containers, and _hacz_. But we're not there yet are we? If so, please skip this part up
-until the [warning](#!warning!!)
+until the [warning](#warning) and maybe think how to cook yourself
+an own Linux distribution
 
 You can also try the new package in here, [mitmproxy](https://mitmproxy.org). In short, running mitmproxy from one terminal window run with `docker run -it --rm --name nutek-core neosb/nutek-core:latest mitmproxy` command, and then connecting to the same docker container
 from another terminal window/tab with `docker exec -it nutek-core bash`. From now on you might use your first mitmproxy tab to look into http requests and responses you get, post, put, delete and so on.
