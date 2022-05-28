@@ -17,6 +17,7 @@ jobs:
       image: ubuntu-2004:202201-02
     steps:
       - checkout
+      - run: docker pull neosb/nutek-core:base
       - run: cd slim && docker build --tag neosb/nutek-core:slim .
 workflows:
   production:
