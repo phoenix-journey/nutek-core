@@ -32,6 +32,7 @@ Available tools:
     fire it up and go to http://mitm.it/, follow instructions to install certificate
     check up manual on https://docs.mitmproxy.org/stable/
 🥷 hURL                      encode/decode text and files
+🥷 Nmap                      network port scanner https://nmap.org/book/man.html
 
 Arguments:
 -h | --help         display this message

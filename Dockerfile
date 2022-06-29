@@ -26,4 +26,4 @@ RUN echo 'echo $"::::    ::: :::    ::: ::::::::::: :::::::::: :::    ::: \n\
 +#+  +#+#+# +#+    +#+     +#+     +#+        +#+  +#+   "' >> ~/.bashrc
 RUN echo "echo '#+#   #+#+# #+#    #+#     #+#     #+#        #+#   #+#  '" >> ~/.bashrc
 RUN echo "echo '###    ####  ########      ###     ########## ###    ### 😼 '" >> ~/.bashrc
-RUN echo "echo 'https://neosb.marketplaceinspace.com\n'" >> ~/.bashrc
+RUN echo "echo 'Neosb & 😼 https://neosb.marketplaceinspace.com\n'" >> ~/.bashrc

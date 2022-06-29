@@ -8,16 +8,22 @@
 +#+  +#+#+# +#+    +#+     +#+     +#+        +#+  +#+   
 #+#   #+#+# #+#    #+#     #+#     #+#        #+#   #+#  
 ###    ####  ########      ###     ########## ###    ### 😼 
-Neosb @museyoucoulduse
+Neosb https://neosb.marketplaceinspace.com
 ```
 
 This is the base, for all my cyber security tasks. If it can be done in
-command line - I want in. Tested throughout the course of [TryHackMe](https://tryhackme.com/) _currently on the level of complete newbie - lamer_.
+command line - I want in.
 
 Obvious mischiefs? GUI programs. Burp, Beef, Firefox, Zenmap... And many others... But hey, you can `echo "Hej Nutek!"` - GUI say no
 to Docker, I say no to GUI. Anyway, have fun.
 
 Where we will be going from here? I have plans to automate the process of gathering information and creating reports. To make it easy getting us to payday! There are websites that offer bug bounties for documenting security flaws in software, hardware, websites and servers.
+
+## nutek-core:slim start-nutek helper
+
+I have made a simple Python program that spins up nutek-core:slim container for you. You can look into it in `programs` folder, run it
+with your Python `python3 programs/start-nutek.py` or use
+docker 
 
 [WIKI - Bug Bounty Program](https://en.wikipedia.org/wiki/Bug_bounty_program)
 
